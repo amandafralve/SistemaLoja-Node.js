@@ -1,0 +1,16 @@
+{
+  "name": "sistemaloja-node",
+  "version": "1.0.0",
+  "description": "Projeto Node de Sistema de uma Loja, aplicando uso de npm, configuração do express, aplicar rotas e renderizar páginas web.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "amandafral",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.0",
+    "nodemon": "^3.1.4"
+  }
+}
