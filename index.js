@@ -11,9 +11,18 @@ app.get("/",function(req,res){
 })
 
 // ROTA CLIENTES
-app.get("/clientes",function(req,res){
-    res.render("clientes");
-})
+app.get("/clientes",(req,res) => {
+    const client = [
+        {nome: "Igor Carlos", cpf: "79276596852", endereco:"Rua Santa Cecília, 233"},
+        {nome: "Sandra Rebeca", cpf: "78771531122", endereco:"Rua das Mozendras, 735"},
+        {nome: "Sueli Heloisa", cpf: "65312925713", endereco:"Rua Barão de Santo Ângelo, 126"},
+        {nome: "Marlene Isabelle", cpf: "88966123813", endereco:"Rua Vila Gran Caprita, 098"}    
+    ]
+    res.render("clientes",{
+        // enviando variável para página
+        client:client
+    });
+})  
 
 // ROTA PRODUTOS
 app.get("/produtos",function(req,res){

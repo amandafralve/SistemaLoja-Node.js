@@ -4,7 +4,8 @@
   "description": "Projeto Node de Sistema de uma Loja, aplicando uso de npm, configuração do express, aplicar rotas e renderizar páginas web.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon index.js"
   },
   "author": "amandafral",
   "license": "ISC",
