@@ -1,3 +1,4 @@
+<%- include ('partials/navbar.ejs') %>
 
 <div>
     <h1>Lista de Clientes</h1>
@@ -7,8 +8,8 @@
             </tr>
             <tr>
                 <th width="200px" >Nome</th>
-                <th>CPF</th>
-                <th>Endereço</th>
+                <th width="200px">CPF</th>
+                <th width="200px">Endereço</th>
             </tr>
             <tr>
                 <% client.forEach((client) => { %>

@@ -7,7 +7,7 @@ app.set("view engine","ejs");
 
 // ROTA PRINCIPAL (index)
 app.get("/",function(req,res){
-    res.render("index");
+    res.render("index",{ title:'Home'});
 })
 
 // ROTA CLIENTES
@@ -18,20 +18,21 @@ app.get("/clientes",(req,res) => {
         {nome: "Sueli Heloisa", cpf: "65312925713", endereco:"Rua Barão de Santo Ângelo, 126"},
         {nome: "Marlene Isabelle", cpf: "88966123813", endereco:"Rua Vila Gran Caprita, 098"}    
     ]
-    res.render("clientes",{
+    res.render("clientes",{title: 'Clientes'},{
         // enviando variável para página
+        title: 'Clientes',
         client:client
     });
 })  
 
 // ROTA PRODUTOS
 app.get("/produtos",function(req,res){
-    res.render("produtos");
+    res.render("produtos", { title: 'Produtos'});
 });
 
 // ROTA PEDIDOS
 app.get("/pedidos", function(req,res){
-    res.render("pedidos");
+    res.render("pedidos", {title: 'Pedidos'});
 });
 
 // inicialização servidor
