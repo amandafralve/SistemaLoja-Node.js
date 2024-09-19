@@ -7,27 +7,28 @@ app.set("view engine","ejs");
 
 // ROTA PRINCIPAL (index)
 app.get("/",function(req,res){
-    res.render("index",{ title:'Home'});
+    res.render("index", {title: 'Home'});
 })
 
 // ROTA CLIENTES
 app.get("/clientes",(req,res) => {
-    const client = [
+    const clients = [
         {nome: "Igor Carlos", cpf: "79276596852", endereco:"Rua Santa Cecília, 233"},
         {nome: "Sandra Rebeca", cpf: "78771531122", endereco:"Rua das Mozendras, 735"},
         {nome: "Sueli Heloisa", cpf: "65312925713", endereco:"Rua Barão de Santo Ângelo, 126"},
         {nome: "Marlene Isabelle", cpf: "88966123813", endereco:"Rua Vila Gran Caprita, 098"}    
     ]
-    res.render("clientes",{title: 'Clientes'},{
+    res.render("clientes",{
         // enviando variável para página
         title: 'Clientes',
-        client:client
+        clients:clients
     });
 })  
 
 // ROTA PRODUTOS
 app.get("/produtos",function(req,res){
-    res.render("produtos", { title: 'Produtos'});
+    const produto = "COmputador"
+    res.render("produtos", { title: 'Produtos', produto: produto});
 });
 
 // ROTA PEDIDOS

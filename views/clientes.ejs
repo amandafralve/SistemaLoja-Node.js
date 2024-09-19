@@ -1,24 +1,32 @@
-<%- include ('partials/navbar.ejs') %>
+<%- include('partials/navbar.ejs') %>
 
-<div>
-    <h1>Lista de Clientes</h1>
-        <table border="1">
-            <tr>
-                <th>CLIENTES</th>
-            </tr>
-            <tr>
-                <th width="200px" >Nome</th>
-                <th width="200px">CPF</th>
-                <th width="200px">Endereço</th>
-            </tr>
-            <tr>
-                <% client.forEach((client) => { %>
-                    <td><%= client.nome %></td>
-                    <td><%= client.cpf %></td>
-                    <td><%= client.endereco %></td>
-                <% }) %>
-            </tr>
-        </table>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            CLIENTES
+        </div>
+        <div class="card-body">
+            <table>
+                <thead>
+                    <tr>
+                        <th>NOME</th>
+                        <th>CPF</th>
+                        <th>ENDEREÇO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% clients.forEach(client=> { %>
+                        <tr>
+                            <td>imagem</td>
+                            <td><%= client.nome %></td>
+                            <td><%= client.cpf %></td>
+                            <td><%= client.endereco %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
-<%- include ('partials/footer.ejs') %>
+<%-  include('partials/footer.ejs')%>
