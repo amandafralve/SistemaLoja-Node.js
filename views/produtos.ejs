@@ -1,3 +1,36 @@
-<%- include ('partials/navbar.ejs') %>
+<%- include('partials/navbar.ejs') %>
 
-<%- include ('partials/footer.ejs') %>
+<div class="container text-center bg-light flex-grow-1 p-3">
+    <div class="container p-5">
+        <h1>Tabela de Produtos</h1>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            PRODUTOS
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">NOME PRODUTO</th>
+                        <th scope="col">CATEGORIA</th>
+                        <th scope="col">PREÇO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% produtos.forEach(produto=> { %>
+                        <tr>
+                            <td scope="row"><span class="material-symbols-outlined">inventory_2</span></td>
+                            <td><%= produto.nome %></td>
+                            <td><%= produto.categoria %></td>
+                            <td><%= produto.preco %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<%-  include('partials/footer.ejs')%>

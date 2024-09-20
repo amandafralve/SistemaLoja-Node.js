@@ -4,6 +4,9 @@ const express = require("express");
 const app = express();
 // definindo ejs como renderizador
 app.set("view engine","ejs");
+// Servindo arquivos estáticos da pasta "public"
+app.use(express.static('public'));
+
 
 // ROTA PRINCIPAL (index)
 app.get("/",function(req,res){
@@ -26,14 +29,32 @@ app.get("/clientes",(req,res) => {
 })  
 
 // ROTA PRODUTOS
-app.get("/produtos",function(req,res){
-    const produto = "COmputador"
-    res.render("produtos", { title: 'Produtos', produto: produto});
+app.get("/produtos",(req,res) => {
+    const produtos = [
+        { nome: "Notebook", categoria: "Eletrônicos", preco: 3500.00 },
+        { nome: "Smartphone", categoria: "Eletrônicos", preco: 2000.00 },
+        { nome: "Cadeira Gamer", categoria: "Móveis", preco: 900.00 },
+        { nome: "Teclado Mecânico", categoria: "Periféricos", preco: 450.00 },
+        { nome: "Fone de Ouvido", categoria: "Acessórios", preco: 250.00 }
+    ];
+    
+    res.render("produtos", { 
+        title: 'Produtos', 
+        produtos:produtos});
 });
 
 // ROTA PEDIDOS
-app.get("/pedidos", function(req,res){
-    res.render("pedidos", {title: 'Pedidos'});
+app.get("/pedidos", (req,res) =>{
+    const pedidos = [
+        { numeroPedido: 409, valor: 3500.00 },
+        { numeroPedido: 213, valor: 2900.00 },
+        { numeroPedido: 423, valor: 3500.00 },
+        { numeroPedido: 12, valor: 3500.00 },
+        { numeroPedido: 35, valor: 3500.00 }
+    ]
+    res.render("pedidos", {
+        title: 'Pedidos',
+    pedidos:pedidos});
 });
 
 // inicialização servidor

@@ -1,23 +1,25 @@
 <%- include('partials/navbar.ejs') %>
 
-<div class="container">
-    <div class="card">
-        <div class="card-header">
-            CLIENTES
-        </div>
+<div class="container text-center bg-light flex-grow-1 p-3">
+    <div class="container p-5">
+        <h1>Tabela de Clientes</h1>
+    </div>
+    <div class="card" style="width:auto;">
+        <div class="card-header">CLIENTES</div>
         <div class="card-body">
-            <table>
-                <thead>
-                    <tr>
-                        <th>NOME</th>
-                        <th>CPF</th>
-                        <th>ENDEREÇO</th>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>    
+                        <th scope="col"></th>
+                        <th scope="col">NOME</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">ENDEREÇO</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% clients.forEach(client=> { %>
                         <tr>
-                            <td>imagem</td>
+                            <td scope="row"><span class="material-symbols-outlined">person</span></td>
                             <td><%= client.nome %></td>
                             <td><%= client.cpf %></td>
                             <td><%= client.endereco %></td>
