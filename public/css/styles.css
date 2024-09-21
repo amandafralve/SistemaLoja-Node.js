@@ -7,3 +7,6 @@ body{
     
 }
 
+.navbar-nav .nav-link {
+    font-size: 24px; /* Ajuste o valor para o tamanho desejado */
+  }
