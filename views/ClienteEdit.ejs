@@ -7,16 +7,16 @@
             <h1>Alterar Clientes</h1>
         </div>
         <div class="card-body">
-            <form action="/clientes/update" method="post">
+            <form action="/clientes/update/<%= clientes.id %>" method="post">
                 <label>Nome Cliente</label>
-                <input type="text" name="nome" value="<%= client.nome %>" class="form-control" required>
+                <input type="text" name="nome" id="nome" value="<%= clientes.nome %>" class="form-control" required>
                 <label>Cpf do Cliente</label>
-                <input type="text" name="cpf" value="<%= client.cpf %>"  class="form-control" required>
+                <input type="text" name="cpf" value="<%= clientes.cpf %>"  class="form-control" required>
                 <label>Endereco do Cliente</label>
-                <input type="text" name="endereco" value="<%= client.endereco %>"  class="form-control" required>
+                <input type="text" name="endereco" value="<%= clientes.endereco %>"  class="form-control" required>
                 <br>
-                <input type="hidden" name="id" value="<%= client.id %>" >
-                <input type="submit" value="Alterar" class="btn btn-warning" onclick="return confirm('Deseja alterar dados do cliente <%= client.nome %>?')">
+                <input type="hidden" name="id" value="<%= clientes.id %>" >
+                <input type="submit" value="Alterar" class="btn btn-warning" onclick="return confirm('Deseja alterar dados do cliente <%= clientes.nome %>?')">
             </form>
         </div>
     </div>

@@ -43,7 +43,7 @@
                             <td><span class="material-symbols-outlined">shopping_cart</span></td>
                             <td><%= pedido.numero %></td>
                             <td><%= pedido.valor %></td>
-                            <td><a href="/pedidos/update/<%= pedido.id %>" style="color: orange;" >Alterar</a></td>
+                            <td><a href="/pedidos/edit/<%= pedido.id %>" style="color: orange;" >Alterar</a></td>
                             <td><a href="/pedidos/delete/<%= pedido.id %>" style="color: red;" >Apagar</a></td>
                         </tr>
                     <% }) %>

@@ -27,5 +27,44 @@ router.post("/pedidos/new", (req,res)=>{
     })
 })
 
+// ROTA EXCLUSAO
+router.get("/pedidos/delete/:id", (req,res) => {
+    const id = req.params.id;
+    Pedido.destroy({
+        where: { id:id }
+    }).then(()=>{
+        res.redirect("/pedidos")
+    })
+})
+
+// ROTA EDIÇÃO
+router.get("/pedidos/edit/:id", (req,res) => {
+    const id = req.params.id;
+    Pedido.findByPk(id).then((pedidos) => {
+        res.render("PedidoEdit", {
+            pedido:pedidos,
+            title: 'Edição de Pedido'
+        })
+    })
+}) 
+
+// ROTA UPDATE
+router.post("/pedidos/update/:id", (req,res) => {
+    const id = req.body.id;
+    const numero = req.body.numero;
+    const valor = req.body.valor;
+ 
+    Pedido.update(
+        {
+            numero:numero,
+            valor:valor,
+           
+        }, 
+        {where: { id:id }}
+    ).then(()=>{
+        res.redirect("/pedidos")
+    })
+})
+
 
 export default router;

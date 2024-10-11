@@ -41,11 +41,12 @@ router.get("/clientes/edit/:id", (req,res) => {
     const id = req.params.id;
     Cliente.findByPk(id).then((clientes) => {
         res.render("ClienteEdit", {
-            clientes:clientes
+            clientes:clientes,
+            title: 'Edição de Cliente'
         })
     })
 }) 
-x
+
 // ROTA UPDATE
 router.post("/clientes/update/:id", (req,res) => {
     const id = req.body.id;
