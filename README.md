@@ -1,5 +1,5 @@
 # sistema_loja
-Sistema de  Loja desenvolvido com Node.js
+Sistema de  Loja desenvolvido em Node.js com CRUD implementado
 
 ## Criando uma aplicação Node.js
 
