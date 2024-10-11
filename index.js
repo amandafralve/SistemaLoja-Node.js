@@ -1,61 +1,47 @@
 // importando express
-const express = require("express");
-// criar instância
+import express from 'express';
 const app = express();
 // definindo ejs como renderizador
 app.set("view engine","ejs");
 // Servindo arquivos estáticos da pasta "public"
 app.use(express.static('public'));
 
+// RECEBE DADOS DE FORMULARIO
+app.use(express.urlencoded({extende: false}));
+app.use(express.json());
 
-// ROTA PRINCIPAL (index)
-app.get("/",function(req,res){
-    res.render("index", {title: 'Home'});
+// IMPORTAÇÃO CONTROLLER
+import ClientesController from "./controllers/ClientesController.js";
+import PedidosController from "./controllers/PedidosController.js";
+import ProdutosController from "./controllers/ProdutosController.js"
+import connection from "./config/sequelize-config.js";
+
+connection.authenticate().then(()=>{
+    console.log("Conexão com o banco de dados feita com sucesso!");
+}).catch((error)=>{
+    console.log(error);
 })
 
-// ROTA CLIENTES
-app.get("/clientes",(req,res) => {
-    const clients = [
-        {nome: "Igor Carlos", cpf: "79276596852", endereco:"Rua Santa Cecília, 233"},
-        {nome: "Sandra Rebeca", cpf: "78771531122", endereco:"Rua das Mozendras, 735"},
-        {nome: "Sueli Heloisa", cpf: "65312925713", endereco:"Rua Barão de Santo Ângelo, 126"},
-        {nome: "Marlene Isabelle", cpf: "88966123813", endereco:"Rua Vila Gran Caprita, 098"}    
-    ]
-    res.render("clientes",{
-        // enviando variável para página
-        title: 'Clientes',
-        clients:clients
-    });
-})  
-
-// ROTA PRODUTOS
-app.get("/produtos",(req,res) => {
-    const produtos = [
-        { nome: "Notebook", categoria: "Eletrônicos", preco: 3500.00 },
-        { nome: "Smartphone", categoria: "Eletrônicos", preco: 2000.00 },
-        { nome: "Cadeira Gamer", categoria: "Móveis", preco: 900.00 },
-        { nome: "Teclado Mecânico", categoria: "Periféricos", preco: 450.00 },
-        { nome: "Fone de Ouvido", categoria: "Acessórios", preco: 250.00 }
-    ];
-    
-    res.render("produtos", { 
-        title: 'Produtos', 
-        produtos:produtos});
+connection.query("create database if not exists lojaNode;").then(()=> {
+    console.log("Banco criado");
+}).catch((error)=>{
+    console.log(error);
 });
 
-// ROTA PEDIDOS
-app.get("/pedidos", (req,res) =>{
-    const pedidos = [
-        { numeroPedido: 409, valor: 3500.00 },
-        { numeroPedido: 213, valor: 2900.00 },
-        { numeroPedido: 423, valor: 3500.00 },
-        { numeroPedido: 12, valor: 3500.00 },
-        { numeroPedido: 35, valor: 3500.00 }
-    ]
-    res.render("pedidos", {
-        title: 'Pedidos',
-    pedidos:pedidos});
+// ROTA PRINCIPAL (index)n
+app.get("/",function(req,res){
+    res.render("index", {title: 'Home'});
 });
+
+// Definindo uso de rotas
+app.use("/", ClientesController);
+app.use("/", PedidosController);
+app.use("/", ProdutosController);
+
+
+
+
+
 
 // inicialização servidor
 const port = 8080;

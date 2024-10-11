@@ -1,7 +1,28 @@
 <%- include('partials/navbar.ejs') %>
 
-<div class="container text-center bg-light flex-grow-1 p-3">
-    <div class="container p-5">
+<br>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h1>Cadastrar Produtos</h1>
+        </div>
+        <div class="card-body">
+            <form action="/produtos/new" method="post">
+                <label>Nome Produto</label>
+                <input type="text" name="nome" placeholder="Insira o nome do Produto" class="form-control" required>
+                <label>Categoria do Produto</label>
+                <input type="text" name="categoria" placeholder="Insira a categoria do Produto" class="form-control" required>
+                <label>Preço do Produto</label>
+                <input type="text" name="preco" placeholder="Insira o preço do Produto" class="form-control" required>
+                <br>
+                <input type="submit" value="Cadastrar" class="btn btn-success">
+            </form>
+        </div>
+    </div>
+</div><br>
+
+<div class="container text-center bg-light flex-grow-1 p-3 mb-4">
+    <div class="container p-1">
         <h1>Tabela de Produtos</h1>
     </div>
     <div class="card">
@@ -16,6 +37,7 @@
                         <th scope="col">NOME PRODUTO</th>
                         <th scope="col">CATEGORIA</th>
                         <th scope="col">PREÇO</th>
+                        <th colspan="2">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +47,8 @@
                             <td><%= produto.nome %></td>
                             <td><%= produto.categoria %></td>
                             <td><%= produto.preco %></td>
+                            <td><a href="/produtos/update/<%= produto.id %>" style="color: orange;">Alterar</a></td>
+                            <td><a href="/produtos/delete/<%= produto.id %>" style="color: red;">Apagar</a></td>
                         </tr>
                     <% }) %>
                 </tbody>
