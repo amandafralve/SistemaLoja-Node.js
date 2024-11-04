@@ -14,8 +14,23 @@ app.use(express.json());
 import ClientesController from "./controllers/ClientesController.js";
 import PedidosController from "./controllers/PedidosController.js";
 import ProdutosController from "./controllers/ProdutosController.js"
+import UsersController from "./controllers/UsersController.js"
+
 import connection from "./config/sequelize-config.js";
 
+import session from 'express-session';
+import Auth from './middleware/Auth.js';
+import flash from 'express-flash';
+app.use(flash());
+
+// Configurando o express-session
+app.use(session({
+    secret: "lojasecret",
+    cookie: {maxAge: 3600000}, // Sessão expira em 1 hora
+    saveUninitialized: false,
+    resave: false
+  }))
+  
 connection.authenticate().then(()=>{
     console.log("Conexão com o banco de dados feita com sucesso!");
 }).catch((error)=>{
@@ -28,20 +43,19 @@ connection.query("create database if not exists lojaNode;").then(()=> {
     console.log(error);
 });
 
-// ROTA PRINCIPAL (index)n
-app.get("/",function(req,res){
-    res.render("index", {title: 'Home'});
-});
-
 // Definindo uso de rotas
 app.use("/", ClientesController);
 app.use("/", PedidosController);
 app.use("/", ProdutosController);
+app.use("/", UsersController);
 
-
-
-
-
+// ROTA PRINCIPAL (index)
+app.get("/", Auth, function(req,res){
+    res.render("index", {
+        title: 'Home',
+        messages: req.flash()
+    });
+});
 
 // inicialização servidor
 const port = 8080;
